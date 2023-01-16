@@ -1,0 +1,42 @@
+.article-full img {
+    width: 50%;
+    height: 245px;
+    /*z-index: 0;*/
+}
+
+.article-full {
+    position: relative;
+}
+
+.article-full-card {
+    position: absolute;
+    /*width: 100%;*/
+    height: 900px;
+    border: 1px solid lightgray;
+    top: 150px;
+    left: 75px;
+    right: 75px;
+    background: #FFFFFF;
+    color: #000000;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+    padding-top: 35px;
+    padding-left: 75px;
+    padding-right: 75px;
+}
+
+.back {
+    position: absolute;
+    top: 1100px;
+    left: 170px;
+    padding-bottom: 45px;
+}
+
+.article-full-title {
+    color: #363636;
+}
+
+
