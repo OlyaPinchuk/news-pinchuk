@@ -1,11 +1,10 @@
 import {useEffect, useState} from "react";
 import {Link, useParams} from 'react-router-dom';
-// import './articleFull.css'
-import './articleFull.scss'
-import arrow from './arrowLeft.svg'
+import './articleFull.scss';
+import arrow from './arrowLeft.svg';
 import {IArticle} from "../../interfaces/articleInterface";
-// import {getChosenArticle} from "../../services/articleService";
 import useFetch from "../../hooks/useFetch";
+import {Card, Typography} from "@mui/material";
 
 const ArticleFullComponent = () => {
 
@@ -14,10 +13,7 @@ const ArticleFullComponent = () => {
     const articleFromHook = useFetch(`https://api.spaceflightnewsapi.net/v3/articles/${id}`)
 
     useEffect(() => {
-
         articleFromHook && setArticle(articleFromHook)
-        // getChosenArticle(id).then(data => setArticle(data))
-
     },[articleFromHook])
 
     return <div>
@@ -25,11 +21,10 @@ const ArticleFullComponent = () => {
             <div className='image-div'>
                 <img src={article.imageUrl} alt='article'/>
             </div>
-            {/*<img src={article.imageUrl}/>*/}
-            <div className='article-full-card'>
-                <div className='article-full-title'>{article.title}</div>
-                <div className='article-full-summary'>{article.summary}</div>
-            </div>
+            <Card className='article-full-card'>
+                <Typography className='article-full-title'>{article.title}</Typography>
+                <Typography className='article-full-summary'>{article.summary}</Typography>
+            </Card>
         </div>}
         <Link className='back' style={{ textDecoration: 'none', color: '#363636' }} to='/'>
             <img src={arrow} alt='arrow'/>

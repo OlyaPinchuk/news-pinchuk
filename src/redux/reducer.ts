@@ -1,4 +1,3 @@
-// import {createStore} from "redux";
 import {configureStore} from "@reduxjs/toolkit";
 import {IAction, IState} from "../interfaces/articleInterface";
 
@@ -43,5 +42,5 @@ export const articlesReducer = (state = initialState, action: IAction) => {
     }
 }
 
-export const articlesStore = configureStore({reducer: articlesReducer})
+export const articlesStore = configureStore({reducer: articlesReducer});
 

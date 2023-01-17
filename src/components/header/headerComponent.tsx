@@ -1,21 +1,17 @@
-// import './header.css'
-import './header.scss'
+import './header.scss';
 import {InputBase} from "@mui/material";
-import search from './search.svg'
+import search from './search.svg';
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {setStoreArticles, setStoreKeyword, updateFoundArticles, updateStoreArticles} from "../../redux/actionCreators";
 import {IArticle} from "../../interfaces/articleInterface";
 import {findArticlesByTitle, findArticlesBySummary} from "../../services/articleService";
-// import useFetch from "../../hooks/useFetch";
-
 
 const HeaderComponent = () => {
 
     const articlesStore: IArticle[] = useSelector((state: any) => {
         return state.articles
     })
-
     const keyword: string = useSelector((state: any) => state.keyword)
     const dispatch = useDispatch()
 
@@ -24,19 +20,18 @@ const HeaderComponent = () => {
 
     const handleInput = ((e: any) => {
         dispatch(setStoreKeyword(e.target.value))
-
         findArticlesByTitle(e.target.value).then(data => dispatch(setStoreArticles(data)))
-
         findArticlesBySummary(e.target.value)
             .then(data => {
                 let foundByTitle: IArticle[] = []
                 const foundBySummary = data.filter((article: IArticle) => {
-                    let titleIncludes: boolean = false
+                    let titleIncludes: boolean = false;
                     article.title.split(' ').forEach((word: string) => {
                         if (keyword.toLowerCase().includes(word.toLowerCase()) || word.toLowerCase().includes(keyword.toLowerCase())) {
                             titleIncludes = true
                         }
-                    })
+                    });
+
                     if (!articlesStore.find((a: IArticle) => a.id === article.id) && titleIncludes) {
                         foundByTitle.push(article)
                         return false
@@ -48,11 +43,8 @@ const HeaderComponent = () => {
                 })
                 dispatch(updateStoreArticles(foundByTitle))
                 dispatch(updateFoundArticles(foundBySummary))
-
             })
-
     })
-
 
     return <div className='header'>
         <link href="https://fonts.googleapis.com/css?family=Montserrat|Ubuntu" rel="stylesheet"/>
