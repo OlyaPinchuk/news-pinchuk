@@ -1,19 +1,21 @@
-import './article.css'
+// import './article.css'
 import calendar from './calendar.svg'
 import arrow from './arrow.svg'
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from 'react-router-dom'
+import {IArticle, IArticleProps} from "../../interfaces/articleInterface";
+import './article.scss'
 
-const ArticleComponent = (props: any) => {
 
+
+
+const ArticleComponent = (props: IArticleProps) => {
 
     const {article} = props
 
-    const articleDate = new Date(article.publishedAt).toDateString().slice(3)
+    const articleDate: string = new Date(article.publishedAt).toDateString().slice(3)
 
-    const keyword = useSelector((state: any) => state.keyword)
-
-    const dispatch = useDispatch()
+    const keyword: string = useSelector((state: any) => state.keyword)
 
 
     return <div className='article-container'>
@@ -28,12 +30,12 @@ const ArticleComponent = (props: any) => {
                         <span>{articleDate}</span>
                     </div>
 
-                    <div className='title'>{article.title.split(' ').map((word:any) => {
+                    <div className='title'>{article.title.split(' ').map((word:string) => {
                          return <span key={Math.floor(new Date().valueOf() * Math.random())} style={keyword.toLowerCase().includes(word.toLowerCase()) || word.toLowerCase().includes(keyword.toLowerCase()) ? {background: "yellow", borderRadius: "5px"} : {}}>{word} </span>
                     })
                     }</div>
-                    <div className='summary' >{article.summary.substring(0, 100).split(' ').map((word: any) => {
-                         return <span key={Math.floor(new Date().valueOf() * Math.random())} style={keyword.toLowerCase().includes(word.toLowerCase()) ? {background: "yellow", borderRadius: "5px"} : {}}>{word} </span>
+                    <div className='summary' >{article.summary.substring(0, 100).split(' ').map((word: string) => {
+                         return <span key={Math.floor(new Date().valueOf() * Math.random())} style={keyword.toLowerCase().includes(word.toLowerCase()) || word.toLowerCase().includes(keyword.toLowerCase()) ? {background: "yellow", borderRadius: "5px"} : {}}>{word} </span>
                     })}...</div>
                     <Link className='read-more' style={{ textDecoration: 'none', color: '#363636' }} to={`/articles/${article.id}`}>Read more
                         <img className='arrow' src={arrow}/>

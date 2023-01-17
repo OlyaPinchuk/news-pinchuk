@@ -1,12 +1,14 @@
 import {createStore} from "redux";
 import {configureStore} from "@reduxjs/toolkit";
+import {IAction, IArticle, IState} from "../interfaces/articleInterface";
 
-const initialState: any = {
+
+const initialState: IState = {
     articles: [],
     foundBySummary: [],
     keyword: '  '
 }
-export const articlesReducer = (state = initialState, action: any) => {
+export const articlesReducer = (state = initialState, action: IAction) => {
     switch (action.type) {
         case 'SET_ARTICLES': {
             return {

@@ -1,28 +1,40 @@
 import {useEffect, useState} from "react";
-import { useParams } from 'react-router-dom';
-import './articleFull.css'
+import {Link, useParams} from 'react-router-dom';
+// import './articleFull.css'
+import './articleFull.scss'
+import arrow from './arrowLeft.svg'
+import {IArticle} from "../../interfaces/articleInterface";
+import {getChosenArticle} from "../../services/articleService";
+import useFetch from "../../hooks/useFetch";
 
 const ArticleFullComponent = () => {
 
     const {id} = useParams()
-    const [article, setArticle] =useState<any>()
+    const [article, setArticle] = useState<IArticle>()
+    const articleFromHook = useFetch(`https://api.spaceflightnewsapi.net/v3/articles/${id}`)
 
     useEffect(() => {
-        fetch(`https://api.spaceflightnewsapi.net/v3/articles/${id}`)
-            .then(res => res.json())
-            .then(data => setArticle(data))
-    },[])
+
+        articleFromHook && setArticle(articleFromHook)
+        // getChosenArticle(id).then(data => setArticle(data))
+
+    },[articleFromHook])
 
     return <div>
         {article && <div className='article-full'>
-            <img src={article.imageUrl}/>
-            <img src={article.imageUrl}/>
+            <div className='image-div'>
+                <img src={article.imageUrl}/>
+            </div>
+            {/*<img src={article.imageUrl}/>*/}
             <div className='article-full-card'>
                 <div className='article-full-title'>{article.title}</div>
-                <div>{article.summary}</div>
+                <div className='article-full-summary'>{article.summary}</div>
             </div>
         </div>}
-        <div className='back'>Back to homepage</div>
+        <Link className='back' style={{ textDecoration: 'none', color: '#363636' }} to='/'>
+            <img src={arrow}/>
+            Back to homepage
+        </Link>
     </div>
 }
 

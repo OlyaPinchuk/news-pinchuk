@@ -1,0 +1,66 @@
+$text-color: #363636;
+
+
+.article-full {
+  position: relative;
+
+  .image-div {
+    height: 245px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      position: relative;
+      top: -50%;
+    }
+  }
+
+  .article-full-card {
+    position: absolute;
+    height: 900px;
+    border: 1px solid #EAEAEA;
+    top: 150px;
+    left: 75px;
+    right: 75px;
+    background: #FFFFFF;
+    color: #000000;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+    padding-top: 35px;
+    padding-left: 75px;
+    padding-right: 75px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+
+    .article-full-title {
+      color: $text-color;
+      font-size: 24px;
+      font-weight: 400;
+    }
+
+    .article-full-summary {
+      font-size: 18px;
+      font-weight: 400;
+    }
+  }
+}
+
+
+.back {
+  position: absolute;
+  top: 1100px;
+  left: 170px;
+  padding-bottom: 45px;
+  font-size: 16px;
+  font-weight: 700;
+
+  img {
+    margin-right: 10px;
+  }
+}
+
+
+
+

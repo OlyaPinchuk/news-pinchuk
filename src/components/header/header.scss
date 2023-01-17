@@ -1,0 +1,53 @@
+$font-list: 'Montserrat', sans-serif;
+$font-style: normal;
+$text-color: #363636;
+
+.header {
+  font-family: $font-list;
+  color: $text-color;
+
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    margin-left: 75px;
+    gap: 10px;
+    max-width: 600px;
+
+    label {
+      font-style: $font-style;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 20px;
+    }
+
+    .search {
+      height: 50px;
+      border: 1px solid #EAEAEA;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+      border-radius: 5px;
+      display: flex;
+
+      img {
+        margin: 10px;
+
+      }
+    }
+
+  }
+
+  .results-container {
+    margin-left: 75px;
+    margin-right: 75px;
+    margin-top: 40px;
+    border-bottom: 1px solid lightgray;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+
+}
+
+
+
