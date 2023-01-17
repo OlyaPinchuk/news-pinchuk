@@ -5,16 +5,21 @@ import arrow from './arrowLeft.svg';
 import {IArticle} from "../../interfaces/articleInterface";
 import useFetch from "../../hooks/useFetch";
 import {Card, Typography} from "@mui/material";
+import {useDispatch} from "react-redux";
+import {setStoreKeyword} from "../../redux/actionCreators";
 
 const ArticleFullComponent = () => {
 
     const {id} = useParams()
     const [article, setArticle] = useState<IArticle>()
     const articleFromHook = useFetch(`https://api.spaceflightnewsapi.net/v3/articles/${id}`)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         articleFromHook && setArticle(articleFromHook)
-    },[articleFromHook])
+        dispatch(setStoreKeyword('  '))
+    // eslint-disable-next-line
+    }, [articleFromHook])
 
     return <div>
         {article && <div className='article-full'>
@@ -26,7 +31,7 @@ const ArticleFullComponent = () => {
                 <Typography className='article-full-summary'>{article.summary}</Typography>
             </Card>
         </div>}
-        <Link className='back' style={{ textDecoration: 'none', color: '#363636' }} to='/'>
+        <Link className='back' style={{textDecoration: 'none', color: '#363636'}} to='/'>
             <img src={arrow} alt='arrow'/>
             Back to homepage
         </Link>

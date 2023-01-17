@@ -1,7 +1,7 @@
 import './header.scss';
 import {InputBase} from "@mui/material";
 import search from './search.svg';
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {setStoreArticles, setStoreKeyword, updateFoundArticles, updateStoreArticles} from "../../redux/actionCreators";
 import {IArticle} from "../../interfaces/articleInterface";
@@ -15,10 +15,14 @@ const HeaderComponent = () => {
     const keyword: string = useSelector((state: any) => state.keyword)
     const dispatch = useDispatch()
 
+    const [resultsNumber, setResultsNumber] = useState<number>()
+
+
     useEffect(() => {
-    }, [])
+    }, [keyword])
 
     const handleInput = ((e: any) => {
+
         dispatch(setStoreKeyword(e.target.value))
         findArticlesByTitle(e.target.value).then(data => dispatch(setStoreArticles(data)))
         findArticlesBySummary(e.target.value)
@@ -43,6 +47,11 @@ const HeaderComponent = () => {
                 })
                 dispatch(updateStoreArticles(foundByTitle))
                 dispatch(updateFoundArticles(foundBySummary))
+                setResultsNumber(articlesStore.length + foundBySummary.length)
+                if (e.target.value === '') {
+                    setResultsNumber(undefined)
+                }
+
             })
     })
 
@@ -58,10 +67,11 @@ const HeaderComponent = () => {
                     placeholder="Search for articles"
                     inputProps={{'aria-label': 'search for articles'}}
                     onChange={handleInput}
+                    // value={keyword}
                 />
             </div>
         </div>
-        <div className='results-container'>Results:</div>
+        <div className='results-container'>Results: {resultsNumber}</div>
     </div>
 }
 
