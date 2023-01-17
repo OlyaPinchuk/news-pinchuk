@@ -1,9 +1,9 @@
 // import './article.css'
 import calendar from './calendar.svg'
 import arrow from './arrow.svg'
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {Link} from 'react-router-dom'
-import {IArticle, IArticleProps} from "../../interfaces/articleInterface";
+import {IArticleProps} from "../../interfaces/articleInterface";
 import './article.scss'
 
 
@@ -23,10 +23,10 @@ const ArticleComponent = (props: IArticleProps) => {
 
         {article &&
             <div style={{borderRadius: '5px'}}>
-                <img className='image' src={article.imageUrl} alt='article image'/>
+                <img className='image' src={article.imageUrl} alt='article'/>
                 <div className='card-content'>
                     <div className='date' >
-                        <img  src={calendar}/>
+                        <img  src={calendar} alt='calendar'/>
                         <span>{articleDate}</span>
                     </div>
 
@@ -38,7 +38,7 @@ const ArticleComponent = (props: IArticleProps) => {
                          return <span key={Math.floor(new Date().valueOf() * Math.random())} style={keyword.toLowerCase().includes(word.toLowerCase()) || word.toLowerCase().includes(keyword.toLowerCase()) ? {background: "yellow", borderRadius: "5px"} : {}}>{word} </span>
                     })}...</div>
                     <Link className='read-more' style={{ textDecoration: 'none', color: '#363636' }} to={`/articles/${article.id}`}>Read more
-                        <img className='arrow' src={arrow}/>
+                        <img className='arrow' src={arrow} alt='arrow'/>
                     </Link>
                 </div>
             </div>

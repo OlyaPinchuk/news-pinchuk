@@ -1,6 +1,6 @@
-import {createStore} from "redux";
+// import {createStore} from "redux";
 import {configureStore} from "@reduxjs/toolkit";
-import {IAction, IArticle, IState} from "../interfaces/articleInterface";
+import {IAction, IState} from "../interfaces/articleInterface";
 
 
 const initialState: IState = {

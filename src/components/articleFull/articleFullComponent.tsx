@@ -4,7 +4,7 @@ import {Link, useParams} from 'react-router-dom';
 import './articleFull.scss'
 import arrow from './arrowLeft.svg'
 import {IArticle} from "../../interfaces/articleInterface";
-import {getChosenArticle} from "../../services/articleService";
+// import {getChosenArticle} from "../../services/articleService";
 import useFetch from "../../hooks/useFetch";
 
 const ArticleFullComponent = () => {
@@ -23,7 +23,7 @@ const ArticleFullComponent = () => {
     return <div>
         {article && <div className='article-full'>
             <div className='image-div'>
-                <img src={article.imageUrl}/>
+                <img src={article.imageUrl} alt='article'/>
             </div>
             {/*<img src={article.imageUrl}/>*/}
             <div className='article-full-card'>
@@ -32,7 +32,7 @@ const ArticleFullComponent = () => {
             </div>
         </div>}
         <Link className='back' style={{ textDecoration: 'none', color: '#363636' }} to='/'>
-            <img src={arrow}/>
+            <img src={arrow} alt='arrow'/>
             Back to homepage
         </Link>
     </div>
